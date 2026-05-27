@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Corrector } from "@/components/Corrector";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import logo from "@/assets/jca-logo.jpg";
 
 export const Route = createFileRoute("/")({
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <LoadingScreen />
       <Toaster richColors position="top-center" />
 
       {/* Header */}
