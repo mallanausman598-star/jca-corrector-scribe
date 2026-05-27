@@ -71,17 +71,48 @@ function Home() {
       <Corrector />
 
       {/* Footer */}
-      <footer className="border-t-2 border-border bg-secondary text-secondary-foreground">
-        <div className="container mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm md:flex-row">
-          <div className="flex items-center gap-2 font-semibold">
-            <div className="h-7 w-7 overflow-hidden rounded-md">
-              <img src={logo} alt="" className="h-full w-full object-cover" />
+      <footer className="relative border-t border-border/50 bg-background">
+        {/* Top glow accent */}
+        <div
+          className="absolute inset-x-0 top-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, oklch(0.85 0.18 92 / 0.6), oklch(0.85 0.18 92 / 0.3), oklch(0.85 0.18 92 / 0.6), transparent)",
+          }}
+        />
+
+        <div className="container mx-auto max-w-5xl px-4 py-10 md:py-14">
+          {/* Brand row */}
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
+            <div className="flex items-center gap-3">
+              <div
+                className="h-9 w-9 overflow-hidden rounded-xl ring-2 ring-primary/30"
+                style={{
+                  boxShadow: "0 0 16px oklch(0.85 0.18 92 / 0.2)",
+                }}
+              >
+                <img src={logo} alt="" className="h-full w-full object-cover" />
+              </div>
+              <div className="leading-tight">
+                <div className="text-sm font-extrabold tracking-tight">
+                  Junaid Coaching Academy
+                </div>
+                <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Empowering students since day one
+                </div>
+              </div>
             </div>
-            Junaid Coaching Academy
+
+            <p className="text-xs font-medium text-muted-foreground/70">
+              © {new Date().getFullYear()} JCA. All rights reserved.
+            </p>
           </div>
-          <p className="opacity-80">
-            Built by <strong className="text-primary">Usman</strong> for Junaid Coaching Academy · © {new Date().getFullYear()} JCA
-          </p>
+
+          {/* Divider */}
+          <div className="my-8 h-px w-full rounded-full bg-border/40" />
+
+          {/* Developer credit */}
+          <DeveloperCredit />
         </div>
       </footer>
     </div>
