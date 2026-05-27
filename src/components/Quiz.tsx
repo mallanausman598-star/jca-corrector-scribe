@@ -49,9 +49,10 @@ export function Quiz({
   }
 
   function next() {
+    const finalCorrect = correct; // already updated by handlePick before next is shown
     if (idx + 1 >= questions.length) {
       setDone(true);
-      onFinish({ correct: correct + (picked === q.answer ? 0 : 0), total: questions.length, timeBonus });
+      onFinish({ correct: finalCorrect, total: questions.length, timeBonus });
     } else {
       setIdx((i) => i + 1);
     }
