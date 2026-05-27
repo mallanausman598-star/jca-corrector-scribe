@@ -57,7 +57,7 @@ export function DeveloperCredit() {
             textShadow: "0 0 12px oklch(0.85 0.18 92 / 0.5)",
           }}
         >
-          Osman
+          Usman
         </span>{" "}
         for{" "}
         <span className="font-semibold text-foreground">
