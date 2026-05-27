@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { DeveloperCredit } from "@/components/DeveloperCredit";
 import logo from "@/assets/jca-logo.jpg";
 
 export const Route = createFileRoute("/")({
