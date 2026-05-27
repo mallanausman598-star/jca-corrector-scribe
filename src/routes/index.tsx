@@ -43,7 +43,7 @@ function Home() {
         <div className="container mx-auto max-w-5xl px-4 pb-12 pt-16 text-center md:pt-24">
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border-2 border-secondary bg-card px-4 py-1.5 text-xs font-bold uppercase tracking-widest">
             <span className="h-2 w-2 rounded-full bg-success" />
-            Powered by AI · Built for Students
+            Built for Students
           </div>
           <h1 className="text-4xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl">
             Speak & write English
@@ -78,7 +78,7 @@ function Home() {
             Junaid Coaching Academy
           </div>
           <p className="opacity-80">
-            Created by <strong className="text-primary">Osman</strong> · © {new Date().getFullYear()} JCA
+            Built by <strong className="text-primary">Usman</strong> for Junaid Coaching Academy · © {new Date().getFullYear()} JCA
           </p>
         </div>
       </footer>
