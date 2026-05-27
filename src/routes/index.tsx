@@ -4,6 +4,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { DeveloperCredit } from "@/components/DeveloperCredit";
+import { StudentHub } from "@/components/StudentHub";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import logo from "@/assets/jca-logo.jpg";
 
 export const Route = createFileRoute("/")({
@@ -69,7 +71,16 @@ function Home() {
         </div>
       </section>
 
-      <Corrector />
+      <div className="container mx-auto max-w-5xl px-4">
+        <Tabs defaultValue="corrector" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
+            <TabsTrigger value="corrector" className="font-bold">✍️ Corrector</TabsTrigger>
+            <TabsTrigger value="student" className="font-bold">🎮 Student Hub</TabsTrigger>
+          </TabsList>
+          <TabsContent value="corrector"><Corrector /></TabsContent>
+          <TabsContent value="student"><StudentHub /></TabsContent>
+        </Tabs>
+      </div>
 
       {/* Footer */}
       <footer className="relative border-t border-border/50 bg-background">
