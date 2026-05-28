@@ -1,4 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
+import { getDb } from "./firebase";
+import {
+  doc, setDoc, collection, getDocs, query, orderBy, limit, onSnapshot, serverTimestamp,
+} from "firebase/firestore";
+
+
 
 export type Student = {
   name: string;
