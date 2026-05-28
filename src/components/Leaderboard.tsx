@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { getLeaderboard, type LeaderboardEntry } from "@/lib/student";
+import { getLeaderboard, subscribeLeaderboard, type LeaderboardEntry } from "@/lib/student";
 import { Card } from "@/components/ui/card";
 import { Trophy, Medal, Award, Crown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Leaderboard({ currentName }: { currentName?: string }) {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
-  useEffect(() => { setEntries(getLeaderboard()); }, []);
+  useEffect(() => {
+    // start with local cache for instant render, then live-sync from cloud
+    setEntries(getLeaderboard());
+    const unsub = subscribeLeaderboard((list) => setEntries(list));
+    return () => unsub();
+  }, []);
+
 
   if (entries.length === 0) {
     return (

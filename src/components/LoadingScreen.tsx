@@ -90,7 +90,7 @@ export function LoadingScreen() {
         </div>
 
         <h1
-          className="text-4xl font-black tracking-tight text-white md:text-6xl"
+          className="text-2xl font-black tracking-tight text-white md:text-4xl lg:text-5xl"
           style={{
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             textShadow:
@@ -98,8 +98,9 @@ export function LoadingScreen() {
             animation: "jca-glow 2.2s ease-in-out infinite",
           }}
         >
-          JCA <span style={{ color: "oklch(0.85 0.18 92)" }}>English</span>
+          Junaid Coaching <span style={{ color: "oklch(0.85 0.18 92)" }}>Academy</span>
         </h1>
+
 
         <p
           className="mt-3 text-xs font-semibold uppercase tracking-[0.4em] text-white/70 md:text-sm"

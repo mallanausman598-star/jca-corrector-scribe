@@ -1,4 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
+import { getDb } from "./firebase";
+import {
+  doc, setDoc, collection, getDocs, query, orderBy, limit, onSnapshot, serverTimestamp,
+} from "firebase/firestore";
+
+
 
 export type Student = {
   name: string;
@@ -46,7 +52,7 @@ function read(): Student | null {
 
 function write(s: Student) {
   localStorage.setItem(KEY, JSON.stringify(s));
-  // upsert leaderboard
+  // upsert leaderboard (local mirror)
   try {
     const lb: LeaderboardEntry[] = JSON.parse(localStorage.getItem(LB_KEY) ?? "[]");
     const idx = lb.findIndex((e) => e.name.toLowerCase() === s.name.toLowerCase());
@@ -55,12 +61,77 @@ function write(s: Student) {
     lb.sort((a, b) => b.xp - a.xp);
     localStorage.setItem(LB_KEY, JSON.stringify(lb.slice(0, 50)));
   } catch {}
+  // sync to Firestore (global leaderboard) — fire & forget
+  syncToCloud(s).catch((err) => console.warn("[firebase] sync failed", err));
+}
+
+async function syncToCloud(s: Student) {
+  if (typeof window === "undefined") return;
+  const db = getDb();
+  const id = s.name.toLowerCase().replace(/[^a-z0-9_-]/g, "_").slice(0, 64) || "anon";
+  await setDoc(
+    doc(db, "students", id),
+    {
+      name: s.name,
+      xp: s.xp,
+      level: levelFromXp(s.xp).level,
+      quizzesTaken: s.quizzesTaken,
+      correctAnswers: s.correctAnswers,
+      badges: s.badges,
+      streak: s.streak,
+      updatedAt: serverTimestamp(),
+    },
+    { merge: true },
+  );
 }
 
 export function getLeaderboard(): LeaderboardEntry[] {
   if (typeof window === "undefined") return [];
   try { return JSON.parse(localStorage.getItem(LB_KEY) ?? "[]"); } catch { return []; }
 }
+
+// Live subscription to the global leaderboard. Returns an unsubscribe fn.
+export function subscribeLeaderboard(
+  cb: (entries: LeaderboardEntry[]) => void,
+  max = 50,
+): () => void {
+  try {
+    const db = getDb();
+    const q = query(collection(db, "students"), orderBy("xp", "desc"), limit(max));
+    return onSnapshot(
+      q,
+      (snap) => {
+        const list: LeaderboardEntry[] = snap.docs.map((d) => {
+          const data = d.data() as { name?: string; xp?: number; level?: number };
+          return { name: data.name ?? "anon", xp: data.xp ?? 0, level: data.level ?? 1 };
+        });
+        cb(list);
+      },
+      (err) => console.warn("[firebase] leaderboard error", err),
+    );
+  } catch (err) {
+    console.warn("[firebase] subscribe failed", err);
+    return () => {};
+  }
+}
+
+// One-shot fetch of the top N — used by WeeklyWinner.
+export async function fetchTopStudents(max = 5): Promise<LeaderboardEntry[]> {
+  try {
+    const db = getDb();
+    const q = query(collection(db, "students"), orderBy("xp", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => {
+      const data = d.data() as { name?: string; xp?: number; level?: number };
+      return { name: data.name ?? "anon", xp: data.xp ?? 0, level: data.level ?? 1 };
+    });
+  } catch (err) {
+    console.warn("[firebase] fetchTop failed", err);
+    return [];
+  }
+}
+
+
 
 export function useStudent() {
   const [student, setStudent] = useState<Student | null>(null);

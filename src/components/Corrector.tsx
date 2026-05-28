@@ -84,9 +84,10 @@ export function Corrector() {
 
   const shareResult = async () => {
     if (!result) return;
-    const payload = `JCA English Corrector\n\nOriginal: ${result.original}\nCorrected: ${result.corrected}`;
+    const payload = `Junaid Coaching Academy English Corrector\n\nOriginal: ${result.original}\nCorrected: ${result.corrected}`;
     if (navigator.share) {
-      try { await navigator.share({ title: "JCA Correction", text: payload }); } catch {}
+      try { await navigator.share({ title: "Junaid Coaching Academy Correction", text: payload }); } catch {}
+
     } else {
       await navigator.clipboard.writeText(payload);
       toast.success("Copied — ready to share");
