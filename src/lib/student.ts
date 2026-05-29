@@ -93,7 +93,8 @@ export function getLeaderboard(): LeaderboardEntry[] {
 // Live subscription to the global leaderboard. Returns an unsubscribe fn.
 export function subscribeLeaderboard(
   cb: (entries: LeaderboardEntry[]) => void,
-  max = 50,
+  onError?: (err: Error) => void,
+  max = 100,
 ): () => void {
   try {
     const db = getDb();
@@ -107,10 +108,14 @@ export function subscribeLeaderboard(
         });
         cb(list);
       },
-      (err) => console.warn("[firebase] leaderboard error", err),
+      (err) => {
+        console.warn("[firebase] leaderboard error", err);
+        onError?.(err);
+      },
     );
   } catch (err) {
     console.warn("[firebase] subscribe failed", err);
+    onError?.(err as Error);
     return () => {};
   }
 }
