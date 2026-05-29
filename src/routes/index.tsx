@@ -105,9 +105,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Top Winner of the Week */}
-      <WeeklyWinner />
-
       {/* Main tabs */}
       <div className="container mx-auto max-w-5xl px-4">
         <div
