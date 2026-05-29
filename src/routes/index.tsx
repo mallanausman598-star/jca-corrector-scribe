@@ -6,7 +6,7 @@ import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { DeveloperCredit } from "@/components/DeveloperCredit";
 import { StudentHub } from "@/components/StudentHub";
-import { WeeklyWinner } from "@/components/WeeklyWinner";
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { initAnalyticsIfSupported } from "@/lib/firebase";
 import logo from "@/assets/jca-logo.jpg";
