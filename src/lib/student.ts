@@ -142,7 +142,14 @@ export function useStudent() {
   const [student, setStudent] = useState<Student | null>(null);
   const [ready, setReady] = useState(false);
 
-  useEffect(() => { setStudent(read()); setReady(true); }, []);
+  useEffect(() => {
+    const s = read();
+    setStudent(s);
+    setReady(true);
+    // Re-sync to cloud on mount so this user appears in the global leaderboard
+    // even if a previous write failed (e.g. before Firestore rules were set).
+    if (s) syncToCloud(s).catch((err) => console.warn("[firebase] resync failed", err));
+  }, []);
 
   const create = useCallback((name: string) => {
     const s: Student = {
