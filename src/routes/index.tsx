@@ -6,6 +6,9 @@ import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { DeveloperCredit } from "@/components/DeveloperCredit";
 import { StudentHub } from "@/components/StudentHub";
+import { DailyChallenge } from "@/components/DailyChallenge";
+import { WelcomeGuide } from "@/components/WelcomeGuide";
+import { Trophy } from "lucide-react";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { initAnalyticsIfSupported } from "@/lib/firebase";
@@ -29,7 +32,9 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <LoadingScreen />
+      <WelcomeGuide />
       <Toaster richColors position="top-center" />
+
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
@@ -105,6 +110,11 @@ function Home() {
         </div>
       </section>
 
+      {/* Daily Challenge */}
+      <div className="container mx-auto max-w-5xl px-4 pb-6 pt-2">
+        <DailyChallenge />
+      </div>
+
       {/* Main tabs */}
       <div className="container mx-auto max-w-5xl px-4">
         <div
@@ -114,13 +124,16 @@ function Home() {
           <Tabs defaultValue="corrector" className="w-full">
             <TabsList className="mx-auto grid w-full max-w-md grid-cols-2">
               <TabsTrigger value="corrector" className="font-bold">✍️ Corrector</TabsTrigger>
-              <TabsTrigger value="student" className="font-bold">🎮 Student Hub</TabsTrigger>
+              <TabsTrigger value="student" className="gap-1.5 font-bold">
+                <Trophy className="h-4 w-4" /> Check My Rank
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="corrector"><Corrector /></TabsContent>
             <TabsContent value="student"><StudentHub /></TabsContent>
           </Tabs>
         </div>
       </div>
+
 
       {/* Footer */}
       <footer className="relative mt-16 border-t border-border/50 bg-background">

@@ -23,6 +23,15 @@ const POS_COLORS: Record<string, string> = {
   interjection: "bg-destructive/20 text-foreground border-destructive/40",
 };
 
+const QUICK_SAMPLES = [
+  "He go to school everyday.",
+  "I am student.",
+  "She don't like apples.",
+  "They was playing in park.",
+];
+
+
+
 export function Corrector() {
   const [text, setText] = useState("");
   const [showUrdu, setShowUrdu] = useState(false);
@@ -76,6 +85,19 @@ export function Corrector() {
 
   useEffect(() => () => recognitionRef.current?.stop(), []);
 
+  // Listen for "load this sentence" events (Daily Challenge, etc.)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (typeof detail === "string" && detail.trim()) {
+        setText(detail);
+        document.getElementById("corrector")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener("jca:load-sentence", handler as EventListener);
+    return () => window.removeEventListener("jca:load-sentence", handler as EventListener);
+  }, []);
+
   const copyResult = async () => {
     if (!result) return;
     await navigator.clipboard.writeText(result.corrected);
@@ -113,6 +135,23 @@ export function Corrector() {
           rows={4}
           className="w-full resize-none rounded-2xl border-2 border-input bg-background p-4 text-lg font-medium leading-relaxed text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/20"
         />
+
+        {/* Quick test templates */}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+            Try a sample:
+          </span>
+          {QUICK_SAMPLES.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setText(s)}
+              className="rounded-full border-2 border-border bg-background px-3 py-1 text-xs font-semibold text-foreground transition hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           <Button
