@@ -85,6 +85,19 @@ export function Corrector() {
 
   useEffect(() => () => recognitionRef.current?.stop(), []);
 
+  // Listen for "load this sentence" events (Daily Challenge, etc.)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (typeof detail === "string" && detail.trim()) {
+        setText(detail);
+        document.getElementById("corrector")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener("jca:load-sentence", handler as EventListener);
+    return () => window.removeEventListener("jca:load-sentence", handler as EventListener);
+  }, []);
+
   const copyResult = async () => {
     if (!result) return;
     await navigator.clipboard.writeText(result.corrected);
