@@ -6,6 +6,9 @@ import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { DeveloperCredit } from "@/components/DeveloperCredit";
 import { StudentHub } from "@/components/StudentHub";
+import { DailyChallenge } from "@/components/DailyChallenge";
+import { WelcomeGuide } from "@/components/WelcomeGuide";
+import { Trophy } from "lucide-react";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { initAnalyticsIfSupported } from "@/lib/firebase";
