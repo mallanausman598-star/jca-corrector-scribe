@@ -32,7 +32,9 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <LoadingScreen />
+      <WelcomeGuide />
       <Toaster richColors position="top-center" />
+
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
