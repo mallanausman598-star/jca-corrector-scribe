@@ -23,6 +23,15 @@ const POS_COLORS: Record<string, string> = {
   interjection: "bg-destructive/20 text-foreground border-destructive/40",
 };
 
+const QUICK_SAMPLES = [
+  "He go to school everyday.",
+  "I am student.",
+  "She don't like apples.",
+  "They was playing in park.",
+];
+
+
+
 export function Corrector() {
   const [text, setText] = useState("");
   const [showUrdu, setShowUrdu] = useState(false);
