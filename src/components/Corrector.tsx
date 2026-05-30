@@ -26,8 +26,6 @@ const POS_COLORS: Record<string, string> = {
 const QUICK_SAMPLES = [
   "He go to school everyday.",
   "I am student.",
-  "She don't like apples.",
-  "They was playing in park.",
 ];
 
 

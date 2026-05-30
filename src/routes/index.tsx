@@ -6,7 +6,7 @@ import { Corrector } from "@/components/Corrector";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { DeveloperCredit } from "@/components/DeveloperCredit";
 import { StudentHub } from "@/components/StudentHub";
-import { DailyChallenge } from "@/components/DailyChallenge";
+import { TopStudent } from "@/components/TopStudent";
 import { WelcomeGuide } from "@/components/WelcomeGuide";
 import { Trophy } from "lucide-react";
 
@@ -110,10 +110,8 @@ function Home() {
         </div>
       </section>
 
-      {/* Daily Challenge */}
-      <div className="container mx-auto max-w-5xl px-4 pb-6 pt-2">
-        <DailyChallenge />
-      </div>
+      {/* Current Leader */}
+      <TopStudent />
 
       {/* Main tabs */}
       <div className="container mx-auto max-w-5xl px-4">
