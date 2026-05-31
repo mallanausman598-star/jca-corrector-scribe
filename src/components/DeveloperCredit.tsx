@@ -65,13 +65,6 @@ export function DeveloperCredit() {
         </span>
       </p>
 
-      {/* Subtle tagline */}
-      <p
-        className="text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground/60"
-        style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
-      >
-        Our aim is to mould the society
-      </p>
 
       {/* Decorative line */}
       <div className="flex items-center gap-3 pt-2">
