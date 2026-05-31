@@ -57,7 +57,7 @@ export function DeveloperCredit() {
             textShadow: "0 0 12px oklch(0.85 0.18 92 / 0.5)",
           }}
         >
-          Usman
+          Osman
         </span>{" "}
         for{" "}
         <span className="font-semibold text-foreground">
@@ -70,7 +70,7 @@ export function DeveloperCredit() {
         className="text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground/60"
         style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
       >
-        Crafted for students, powered by passion
+        Our aim is to mould the society
       </p>
 
       {/* Decorative line */}
