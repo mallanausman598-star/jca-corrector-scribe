@@ -130,8 +130,8 @@ export function Corrector() {
           value={text}
           onChange={(e) => setText(e.target.value.slice(0, 2000))}
           placeholder="Type or speak an English sentence… e.g. 'He go to school everyday.'"
-          rows={4}
-          className="w-full resize-none rounded-2xl border-2 border-input bg-background p-4 text-lg font-medium leading-relaxed text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/20"
+          rows={2}
+          className="w-full resize-none rounded-xl border-2 border-input bg-background p-3 text-base font-medium leading-snug text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/20"
         />
 
         {/* Quick test templates */}

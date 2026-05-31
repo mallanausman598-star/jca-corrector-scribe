@@ -155,7 +155,7 @@ function Home() {
               <div className="leading-tight">
                 <div className="text-sm font-extrabold tracking-tight">Junaid Coaching Academy</div>
                 <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Empowering students since day one
+                  Our aim is to mould the society
                 </div>
               </div>
             </div>
