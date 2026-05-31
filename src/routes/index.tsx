@@ -169,10 +169,6 @@ function Home() {
 
           <DeveloperCredit />
 
-          <p className="mt-8 text-center text-sm font-bold tracking-wide text-foreground">
-            Built for JCA students by Osman{" "}
-            <span className="inline-block animate-pulse">✨</span>
-          </p>
         </div>
       </footer>
 
