@@ -8,6 +8,7 @@ import { DeveloperCredit } from "@/components/DeveloperCredit";
 import { StudentHub } from "@/components/StudentHub";
 import { TopStudent } from "@/components/TopStudent";
 import { WelcomeGuide } from "@/components/WelcomeGuide";
+import { AdminUnlock } from "@/components/AdminUnlock";
 import { Trophy } from "lucide-react";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -48,7 +49,10 @@ function Home() {
               <div className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">AI English Corrector</div>
             </div>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <AdminUnlock />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
